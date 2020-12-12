@@ -2,8 +2,8 @@ const loginForm = document.getElementById('welcome-form');
 const messagesSection = document.getElementById('messages-section');
 const messagesList = document.getElementById('messages-list');
 const addMessageForm = document.getElementById('add-messages-form');
-const userNameInput = document.querySelector('username');
-const messageContentInput = document.getElementById('message-contentconst');
+const userNameInput = document.getElementById('username');
+const messageContentInput = document.getElementById('message-content');
 
 let userName;
 
@@ -12,16 +12,18 @@ const socket = io();
 socket.on('message', ({ author, content }) => addMessage(author, content))
 
 
-function login(event) {
-    event.preventDefault();
+function login(e) {
+    e.preventDefault();
 
-    if (userNameInput.value !== '') {
-      userName = userNameInput.value;
-      loginForm.classList.remove('show');
-      messagesSection.classList.add('show');
+    let user = userNameInput.value;
+
+    if (!user.length) {
+      alert("Name can't be left blank!");
     } 
     else {
-      alert("Name can't be left blank!");
+      userName = user;
+      loginForm.classList.remove('show');
+      messagesSection.classList.add('show');
     }
 }
 
