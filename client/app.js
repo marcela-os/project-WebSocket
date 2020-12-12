@@ -25,3 +25,17 @@ function login(event) {
 loginForm.addEventListener('submit', login);
 
 
+function sendMessage(event) {
+    event.preventDefault();
+
+    if (messageContentInput.value !== '') {
+      addMessage(userName, messageContentInput.value);
+      messageContentInput.value = '';
+    } 
+    else {
+      alert("You should write your message!");
+    }
+}
+
+addMessageForm.addEventListener('submit', sendMessage);
+
