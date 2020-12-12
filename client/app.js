@@ -9,8 +9,8 @@ let userName;
 
 const socket = io();
 
-socket.on('message', ({ author, content }) => addMessage(author, content))
-
+socket.on('message', ({ author, content }) => addMessage(author, content));
+socket.on('join', (user) => addMessage(user));
 
 function login(e) {
     e.preventDefault();
@@ -24,6 +24,7 @@ function login(e) {
       userName = user;
       loginForm.classList.remove('show');
       messagesSection.classList.add('show');
+      socket.emit('join', userName );
     }
 }
 
